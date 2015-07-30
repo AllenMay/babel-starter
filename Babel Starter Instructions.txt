@@ -1,3 +1,5 @@
+http://code.tutsplus.com/courses/start-coding-es6-with-babel/lessons/babel-on-the-client
+
 Babel Starter Instructions
 --------------------------------------
 ASSUMPTIONS: 
