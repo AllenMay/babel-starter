@@ -1,0 +1,115 @@
+Babel Starter Instructions
+--------------------------------------
+ASSUMPTIONS: 
+NodeJS & NPM are installed
+
+
+1. Create a new working folder (babel-starter)
+
+2. run 'npm init’
+  >description: Starting project for babel, browserify, gulp projects
+  >entry point: index.js
+
+3. Install NPM dependencies:
+      npm install —save-dev babel
+      npm install —save-dev babelify
+      npm install —save-dev browserify
+      npm install —save-dev gulp
+      npm install —save-dev vinyl-source-stream
+
+4. Create a '/client' folder structure
+      /client/index.html
+      /client/app
+      /client/app/utils
+      /client/app/utils/index.js
+      /client/app/main.js
+
+5. Contents of '/client/index.html'
+————————————————————————————————————
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Babel starter kit</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+6. Contents of '/client/app/main.js'
+————————————————————————————————————
+'use strict';
+
+var utils = require('./utils');
+
+console.log('Client side code started');
+
+utils.count();
+
+
+
+7. Contents of '/client/app/utils/index.js'
+————————————————————————————————————
+'use strict';
+
+module.exports = {
+  count
+};
+
+function count() {
+  var count = 0
+  setInterval(() -> console.log(count++), 400);
+}
+
+
+
+8. Create '/gulpfile.js'
+————————————————————————————————————
+'use strict';
+
+var gulp = require('gulp');
+var babelify = require('babelify');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+
+gulp.task('build', function () {
+    browserify({
+        entries: './client/app/main.js',
+        debug: true
+    })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('app.bundle.js'))
+    .pipe(gulp.dest('./dist'));
+});
+
+
+9. Back in '/client/index.html' include the JS
+————————————————————————————————————
+  <script src="app.bundle.js"></script>
+
+
+10. Back in the '/gulpfule.js' add copy and watch
+————————————————————————————————————
+gulp.task('copy', function () {
+    gulp.src('client/index.html')
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('watch', function () {
+    gulp.watch('client/**/*.js', ['build']);
+    gulp.watch('client/*.html', ['copy']);
+});
+
+gulp.task('default', ['copy','build','watch']);
+
+
+11. Run 'gulp'
+————————————————————————————————————
+If you open /dist/index.html you should see the counter
+running in the console. 
+This is running ES6 code with the help of Babel.
