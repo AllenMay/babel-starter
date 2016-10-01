@@ -1,0 +1,16 @@
+body {
+	font-family: helvetica;
+	margin-bottom: 100px;
+}
+
+pre {
+	color: white;
+	padding: 20px;
+	background-color: gray;
+	margin: 10px;
+	width: 80%;
+}
+
+.redded {
+	color: blue;
+}

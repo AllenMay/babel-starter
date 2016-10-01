@@ -3,10 +3,56 @@
 <head>
   <meta charset="utf-8">
   <title>Babel starter kit</title>
-  <script src="app.bundle.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
 </head>
 <body>
-Hello Sierra
+<strong>Arrow function demo 1 (console):</strong> Iterate over an array
+<pre>
+var bob = {
+    _name: "Bob",
+    _friends: ["Jack","Sue","Barney"],  // ADDED NAMES
+    printFriends() {
+        this._friends.forEach(f <span class="redded">=></span>
+            console.log(this._name + " knows " + f));
+    }
+}
+console.log("Arrow function demo 1");
+</pre>
+<hr>
+<strong>Arrow function demo 2 (console):</strong> Increment to the console
+<pre>
+function count() {
+    var count = 0
+    nIntervId = setInterval(() <span class="redded">=></span> console.log(count++), 400);
+}
+</pre>
+<button id="stopcount">Stop counting</button>
+<hr>
+<strong>Template demo:</strong> Replace text
+
+<pre>
+var name = "Bob", time = "today", nIntervId;
+var tmptxt = document.getElementById('temp1');
+
+tmptxt.insertAdjacentHTML(<span class="redded">'beforeend',`Hello ${name}, how are you ${time}?`</span>);
+
+</pre>
+
+<div id="temp1"></div>
+<label for="name">Name</label> <input id="name">
+<label for="time">Time</label> <input id="time">
+<button id="tmpl1">Change template</button><br>
+More detail: <a href="https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2/">ES6 In Depth: Template strings</a>
+<hr>
+<strong>Promise demo:</strong> Asynchronous programming<br>
+<button id="btn">Make a promise!</button>
+<div id="log"></div>
+<script src="app.bundle.js"></script>
+
+</script>
+
 </body>
 </html>

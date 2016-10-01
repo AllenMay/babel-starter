@@ -64,7 +64,7 @@ module.exports = {
 
 function count() {
   var count = 0
-  setInterval(() -> console.log(count++), 400);
+  setInterval(() => console.log(count++), 400);
 }
 
 

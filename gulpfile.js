@@ -17,13 +17,16 @@ gulp.task('build', function () {
 });
 
 gulp.task('copy', function () {
-    gulp.src('client/index.html')
+    gulp.src('client/*.html')
+    .pipe(gulp.dest('./dist'));
+
+    gulp.src('client/*.css')
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('watch', function () {
     gulp.watch('client/**/*.js', ['build']);
-    gulp.watch('client/*.html', ['copy']);
+    gulp.watch('client/*.*', ['copy']);
 });
 
 gulp.task('default', ['copy','build','watch']);
